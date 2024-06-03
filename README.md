@@ -2,6 +2,8 @@
 
 Just an experiment to see if I can render an obj file as a wireframe in JS canvas
 
+[Visit the page here](https://mscule.github.io/line-3d/)
+
 ![Example image](./doc/example.png)
 
 ## How to run?
