@@ -11,9 +11,7 @@ import Vec3D from "../../types/Vec3D";
 import center from "../../functions/Vec3D/center";
 import scale from "../../functions/Vec3D/scale";
 import drawLines from "../../functions/Vec3D/drawLines";
-import scaleShape from "../../functions/Shape3D/scale";
 import flatten from "../../functions/Shape3D/flatten";
-import transform from "../../functions/Shape3D/transform";
 import toShape3D from "../../functions/obj/toShape3D";
 
 import MONKEY_OBJ from "../../assets/monkey.obj?raw";
@@ -21,6 +19,8 @@ import ICOSPHERE_OBJ from "../../assets/icosphere.obj?raw";
 import CYLINDER_OBJ from "../../assets/cylinder.obj?raw";
 import CONE_OBJ from "../../assets/cone.obj?raw";
 import TORUS_OBJ from "../../assets/torus.obj?raw";
+import effect from "../../functions/Shape3D/effect";
+import rotate from "../../functions/matrix/rotate";
 
 const monkey = toShape3D(MONKEY_OBJ);
 const icosphere = toShape3D(ICOSPHERE_OBJ);
@@ -53,12 +53,7 @@ export default function App() {
     (ctx: CanvasRenderingContext2D) => {
       drawLines(
         ctx,
-        ...center(
-          ...scale(
-            flatten(transform(scaleShape(shapes[shape].shape, [1, 1, 1]), pos)),
-            [350, 350, 350]
-          )
-        )
+        ...center(...scale(flatten(effect(shapes[shape].shape, [-pos[1], pos[0], 0], rotate)), [350, 350, 350]))
       );
     },
     [pos, shape]
